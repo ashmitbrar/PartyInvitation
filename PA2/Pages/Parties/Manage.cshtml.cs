@@ -16,7 +16,7 @@ namespace PA2.Pages.Parties
         private readonly ApplicationDbContext _context;
         //configured email accounts
         private const string FromEmail = "ashmitbrar329@gmail.com";
-        private const string FromPassword = "nhic ksdv goin pxjg";  // App password for this account
+        private const string FromPassword = "";  // App password for this account
 
         public ManageModel(ApplicationDbContext context)
         {
