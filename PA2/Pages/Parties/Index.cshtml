@@ -1,0 +1,35 @@
+﻿@page
+@model PA2.Pages.Parties.IndexModel
+@{
+    ViewData["Title"] = "My Parties";
+}
+
+<h1>My Parties</h1>
+<a href="/Parties/Create" class="btn btn-primary mb-3">Add New Party</a>
+
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Description</th>
+            <th>Event Date</th>
+            <th>Location</th>
+            <th>No. of Invites</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var party in Model.Parties)
+        {
+            <tr>
+                <td>@party.Description</td>
+                <td>@party.EventDate.ToShortDateString()</td>
+                <td>@party.Location</td>
+                <td>@party.Invitations.Count</td>
+                <td>
+                    <a href="/Parties/Edit/@party.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="/Parties/Manage/@party.Id" class="btn btn-sm btn-info">Manage</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

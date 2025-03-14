@@ -1,0 +1,54 @@
+﻿@page "{id:int}"
+@model PA2.Pages.Parties.ManageModel
+
+<h1>Manage Your Party</h1>
+
+<div>
+    <a href="/Parties">All Parties</a> |
+    <a href="/Parties/Edit/@Model.Party.Id">Edit this Party</a> |
+    <a href="/Parties/Create">Add New Party</a>
+</div>
+
+<h3>Party Summary</h3>
+<p>The party <strong>@Model.Party.Description</strong> is at <strong>@Model.Party.Location</strong> on <strong>@Model.Party.EventDate.ToString("MMMM dd, yyyy")</strong></p>
+
+<h4>Invitations Sent: @Model.Party.Invitations.Count</h4>
+<p>Yes: @Model.YesCount | No: @Model.NoCount</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Guest Name</th>
+            <th>Email</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var invitation in Model.Party.Invitations)
+        {
+            <tr>
+                <td>@invitation.GuestName</td>
+                <td>@invitation.GuestEmail</td>
+                <td>@invitation.Status.ToString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Add New Invitation</h3>
+<form method="post" asp-page-handler="CreateInvitation">
+    <div>
+        <label for="GuestName">Guest Name:</label>
+        <input type="text" name="GuestName" required />
+    </div>
+    <div>
+        <label for="GuestEmail">Guest Email:</label>
+        <input type="email" name="GuestEmail" required />
+    </div>
+    <button type="submit">Create Invitation</button>
+</form>
+
+<h3>Send Invitations</h3>
+<form method="post" asp-page-handler="SendInvitations">
+    <button type="submit">Send Invitations</button>
+</form>

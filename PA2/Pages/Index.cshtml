@@ -1,0 +1,18 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@{
+    var firstVisit = Request.Cookies["FirstVisit"];
+    if (string.IsNullOrEmpty(firstVisit))
+    {
+        firstVisit = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        Response.Cookies.Append("FirstVisit", firstVisit);
+    }
+}
+
+<h1>Welcome to the Party Manager App</h1>
+<p>Manage <a href="/Parties">My Parties</a> or <a href="/Parties/Create">Add a New Party</a>.</p>
+

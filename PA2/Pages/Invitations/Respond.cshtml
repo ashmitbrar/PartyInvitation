@@ -1,0 +1,31 @@
+﻿@page "{id:int}" 
+@model PA2.Pages.Invitations.RespondModel
+
+<h1>Invitation Response</h1>
+@if (Model.Party != null)
+{
+    <p>
+        You have been invited to the party <strong>@Model.Party.Description</strong>
+        at <strong>@Model.Party.Location</strong> on
+        <strong>@Model.Party.EventDate.ToString("MMMM dd, yyyy")</strong>.
+    </p>
+
+    <form method="post">
+        <input type="hidden" name="id" value="@Model.Party.Id" />
+
+        @if (Model.Invitation != null)
+        {
+            <input type="hidden" name="invitationId" value="@Model.Invitation.Id" />
+        }
+
+        <label for="attending">Will you attend?</label>
+        <input type="radio" asp-for="Attending" value="Yes" /> Yes
+        <input type="radio" asp-for="Attending" value="No" /> No
+        <button type="submit">Submit Response</button>
+    </form>
+}
+else
+{
+    <p>Party details not found.</p>
+}
+
